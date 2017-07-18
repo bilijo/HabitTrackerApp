@@ -39,7 +39,7 @@ public class PastaDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // Create a String that contains the SQL statement to create the pets table
-        String SQL_CREATE_PETS_TABLE =  "CREATE TABLE " + PastaEntry.TABLE_NAME + " ("
+        String SQL_CREATE_PASTAS_TABLE =  "CREATE TABLE " + PastaEntry.TABLE_NAME + " ("
                 + PastaEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + PastaEntry.COLUMN_PASTA_NAME + " TEXT NOT NULL, "
                 + PastaEntry.COLUMN_TIMES_EATEN + " INTEGER NOT NULL DEFAULT 0);";
