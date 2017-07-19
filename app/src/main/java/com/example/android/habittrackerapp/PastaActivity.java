@@ -2,9 +2,11 @@ package com.example.android.habittrackerapp;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.android.habittrackerapp.data.PastaContract.PastaEntry;
@@ -14,7 +16,7 @@ import com.example.android.habittrackerapp.data.PastaDbHelper;
  * Displays list of pastas that were entered and stored in the app.
  */
 public class PastaActivity extends AppCompatActivity {
-
+    public static final String LOG_TAG = PastaActivity.class.getSimpleName();
 
     /**
      * Database helper that will provide us access to the database
@@ -28,15 +30,13 @@ public class PastaActivity extends AppCompatActivity {
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
         mDbHelper = new PastaDbHelper(this);
-        readPasta(queryDatabaseInfo());
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-
+        insertPasta();
+        readPasta(queryDatabaseInfo());
     }
 
     /**
@@ -71,7 +71,7 @@ public class PastaActivity extends AppCompatActivity {
     }
 
     private void readPasta(Cursor cursor){
-
+        DatabaseUtils.dumpCursor(cursor);
         // Simulate a view
         TextView displayView = new TextView(this);
 
@@ -106,8 +106,7 @@ public class PastaActivity extends AppCompatActivity {
                 displayView.append(("\n" + currentID + " - " +
                         currentName + " - " +
                         currentTimesEaten));
-
-            }
+              }
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
             // resources and makes it invalid.
@@ -128,7 +127,6 @@ public class PastaActivity extends AppCompatActivity {
         // and Penne's pasta attributes are the values.
         ContentValues values = new ContentValues();
         values.put(PastaEntry.COLUMN_PASTA_NAME, "Penne");
-
         values.put(PastaEntry.COLUMN_TIMES_EATEN, 7);
 
         // Insert a new row for Penne in the database, returning the ID of that new row.

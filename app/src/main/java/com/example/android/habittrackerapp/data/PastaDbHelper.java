@@ -15,14 +15,17 @@ public class PastaDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = PastaDbHelper.class.getSimpleName();
 
 
-    /** Name of the database file */
+    /**
+     * Name of the database file
+     */
     private static final String DATABASE_NAME = "pasta.db";
 
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
     private static final int DATABASE_VERSION = 1;
-     /**
+
+    /**
      * Constructs a new instance of {@link PastaDbHelper}.
      *
      * @param context of the app
@@ -36,7 +39,7 @@ public class PastaDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // Create a String that contains the SQL statement to create the pets table
-        String SQL_CREATE_PASTAS_TABLE =  "CREATE TABLE " + PastaEntry.TABLE_NAME + " ("
+        String SQL_CREATE_PASTAS_TABLE = "CREATE TABLE " + PastaEntry.TABLE_NAME + " ("
                 + PastaEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + PastaEntry.COLUMN_PASTA_NAME + " TEXT NOT NULL, "
                 + PastaEntry.COLUMN_TIMES_EATEN + " INTEGER NOT NULL DEFAULT 0);";
@@ -48,7 +51,7 @@ public class PastaDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // The database is still at version 1, so there's nothing to do be done here.
+// The database is still at version 1, so there's nothing to do be done here.
 
     }
 }
