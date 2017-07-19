@@ -15,6 +15,7 @@ import com.example.android.habittrackerapp.data.PastaDbHelper;
  */
 public class PastaActivity extends AppCompatActivity {
 
+
     /**
      * Database helper that will provide us access to the database
      */
@@ -27,20 +28,23 @@ public class PastaActivity extends AppCompatActivity {
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
         mDbHelper = new PastaDbHelper(this);
+        readPasta(queryDatabaseInfo());
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        displayDatabaseInfo();
+
+
     }
 
     /**
      * Temporary helper method to display information in the onscreen TextView about the state of
      * the pastas database.
      */
-    private Cursor displayDatabaseInfo() {
+    private Cursor queryDatabaseInfo() {
+
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -61,7 +65,12 @@ public class PastaActivity extends AppCompatActivity {
                 null,                  // Don't group the rows
                 null,                  // Don't filter by row groups
                 null);                   // The sort order
+
         return cursor;
+
+    }
+
+    private void readPasta(Cursor cursor){
 
         // Simulate a view
         TextView displayView = new TextView(this);
@@ -77,7 +86,7 @@ public class PastaActivity extends AppCompatActivity {
             displayView.setText("The pastas table contains " + cursor.getCount() + " pastas.\n\n");
             displayView.append(PastaEntry._ID + " - " +
                     PastaEntry.COLUMN_PASTA_NAME + " - " +
-                    PastaEntry.COLUMN_TIMES_EATEN + "\n");
+                    PastaEntry.COLUMN_TIMES_EATEN +" - " + "\n");
 
             // Figure out the index of each column
             int idColumnIndex = cursor.getColumnIndex(PastaEntry._ID);
@@ -97,13 +106,16 @@ public class PastaActivity extends AppCompatActivity {
                 displayView.append(("\n" + currentID + " - " +
                         currentName + " - " +
                         currentTimesEaten));
+
             }
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
             // resources and makes it invalid.
             cursor.close();
         }
+
     }
+
 
     /**
      * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
@@ -119,13 +131,8 @@ public class PastaActivity extends AppCompatActivity {
 
         values.put(PastaEntry.COLUMN_TIMES_EATEN, 7);
 
-        // Insert a new row for Toto in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the pastas table name.
-        // The second argument provides the name of a column in which the framework
-        // can insert NULL in the event that the ContentValues is empty (if
-        // this is set to "null", then the framework will not insert a row when
-        // there are no values).
-        // The third argument is the ContentValues object containing the info for Penne.
+        // Insert a new row for Penne in the database, returning the ID of that new row.
+
         long newRowId = db.insert(PastaEntry.TABLE_NAME, null, values);
     }
 
