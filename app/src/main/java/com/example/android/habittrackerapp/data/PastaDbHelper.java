@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static android.R.attr.version;
 import com.example.android.habittrackerapp.data.PastaContract.PastaEntry;
 
 /**
@@ -23,9 +22,7 @@ public class PastaDbHelper extends SQLiteOpenHelper {
      * Database version. If you change the database schema, you must increment the database version.
      */
     private static final int DATABASE_VERSION = 1;
-    
-
-    /**
+     /**
      * Constructs a new instance of {@link PastaDbHelper}.
      *
      * @param context of the app

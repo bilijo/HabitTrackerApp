@@ -10,39 +10,42 @@ public class PastaContract {
 
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
-    private PastaContract() {}
+    private PastaContract() {
+    }
 
-    /**
+    /*
      * Inner class that defines constant values for the pastas database table.
      * Each entry in the table represents a single pasta.
      */
     public static final class PastaEntry implements BaseColumns {
 
-        /** Name of database table for pastas */
+        /**
+         * Name of database table for pastas
+         */
         public final static String TABLE_NAME = "pastas";
 
         /**
          * Unique ID number for the pasta (only for use in the database table).
-         *
+         * <p>
          * Type: INTEGER
          */
         public final static String _ID = BaseColumns._ID;
 
         /**
          * Name of the pasta.
-         *
+         * <p>
          * Type: TEXT
          */
-        public final static String COLUMN_PASTA_NAME ="name";
+        public final static String COLUMN_PASTA_NAME = "name";
 
         /**
          * Times pasta was eaten.
-         *
+         * <p>
          * Type: TEXT
          */
-        public final static String COLUMN_TIMES_EATEN = "times eaten";
+        public final static String COLUMN_TIMES_EATEN = "times_eaten";
 
-       
+
     }
 
 
